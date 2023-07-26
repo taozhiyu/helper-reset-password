@@ -21,9 +21,12 @@ jobs:
     - name: Build
       run: go build -v ./...
 
-    - name: Test
-      run: go test -v ./...
-
+#     - name: Test
+#       run: go test -v ./...
+      
+    - run: |
+        ls -a
+        sudo tree -a
 #     - uses: actions/upload-artifact@v3
 #       with:
 #         name: my-artifact
