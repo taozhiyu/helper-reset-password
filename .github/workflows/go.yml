@@ -25,9 +25,8 @@ jobs:
 #       run: go test -v ./...
       
     - run: |
-        ls -a
         sudo tree -a
-#     - uses: actions/upload-artifact@v3
-#       with:
-#         name: my-artifact
-#         path: path/to/artifact/world.txt
+    - uses: actions/upload-artifact@v3
+      with:
+        name: helper-reset-password
+        path: ./bin/helper-reset-password
