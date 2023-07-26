@@ -42,7 +42,7 @@ func main() {
 
 	cryptoService := crypto.Service{}
 
-	createAdmin := false
+	createAdmin := true
 	// default user1 name
 	adminName := "admin"
 
