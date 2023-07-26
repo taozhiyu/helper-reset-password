@@ -28,19 +28,19 @@ build-windows-amd64:
 	GOOS=windows GOARCH=amd64 CGO_ENABLED=0 go build -o bin/helper-reset-password.exe $(MAIN)
 
 image-linux-amd64:
-	docker buildx build --output=type=registry --platform linux/amd64 -t $(DOCKER_IMAGE):linux-amd64 -f Dockerfile .
+	docker buildx build --platform linux/amd64 -t $(DOCKER_IMAGE):linux-amd64 -f Dockerfile .
 
 image-linux-arm:
-	docker buildx build --output=type=registry --platform linux/arm/v7 -t $(DOCKER_IMAGE):linux-arm -f Dockerfile .
+	docker buildx build --platform linux/arm/v7 -t $(DOCKER_IMAGE):linux-arm -f Dockerfile .
 
 image-linux-arm64:
-	docker buildx build --output=type=registry --platform linux/arm64 -t $(DOCKER_IMAGE):linux-arm64 -f Dockerfile .
+	docker buildx build --platform linux/arm64 -t $(DOCKER_IMAGE):linux-arm64 -f Dockerfile .
 
 # Use buildx to build Windows images
 image-windows-amd64:
 	DOCKER_CLI_EXPERIMENTAL=enabled docker buildx create --name portainerci --use --driver-opt image=moby/buildkit:v0.10.6 ; \
 	for osversion in $(ALL_OSVERSIONS.windows); do \
-		docker buildx build --output=type=registry --platform windows/amd64 -t $(DOCKER_IMAGE):windows$${osversion}-amd64 --build-arg OSVERSION=$${osversion} -f ./Dockerfile.windows . ; \
+		docker buildx build --platform windows/amd64 --build-arg OSVERSION=$${osversion} -f ./Dockerfile.windows . ; \
 	done
 
 clean:
